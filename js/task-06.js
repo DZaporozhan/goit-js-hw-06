@@ -3,7 +3,7 @@ const refs = {
 };
 const valid = Number(refs.inputElem.dataset.length);
 
-refs.inputElem.addEventListener("input", (event) => {
+refs.inputElem.addEventListener("blur", (event) => {
   if (event.currentTarget.value.length !== valid) {
     refs.inputElem.classList.add("invalid");
     refs.inputElem.classList.remove("valid");
