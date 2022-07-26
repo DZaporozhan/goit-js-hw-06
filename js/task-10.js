@@ -3,36 +3,35 @@ function getRandomHexColor() {
 }
 
 const refs = {
-  controls: document.querySelector("#controls"),
+  controls: document.querySelector("input"),
   createBtn: document.querySelector("[data-create]"),
   destroyBtn: document.querySelector("[data-destroy]"),
   boxInner: document.querySelector("#boxes"),
 };
-
-const amountInp = refs.controls.firstElementChild;
-let amount = amountInp.addEventListener("input", (e) => {
-  return e.currentTarget.value;
+let inpVal = 0;
+controls.addEventListener("input", (e) => {
+  return (inpVal = e.target.value);
 });
 
 const createBoxes = (amount) => {
-  let sizeArr = [];
-  const minWidth = 30;
-  const minHeigth = 30;
+  amount = inpVal;
+  let items = [];
+  const minSize = 30;
   for (let i = 0; i < amount; i++) {
-    sizeArr.push({
-      width: minWidth + 10 * i,
-      heigth: minHeigth + 10 * i,
-    });
+    const color = getRandomHexColor();
+    const adgeSize = minSize + 10 * i;
+    const item = document.createElement("div");
+    item.style.backgroundColor = color;
+    item.style.width = `${adgeSize}px`;
+    item.style.height = `${adgeSize}px`;
+    items.push(item);
   }
-  const newBox = sizeArr
-    .map(
-      (box) =>
-        `<div style="width:${box.width}px; height:${
-          box.heigth
-        }px; background-color:${getRandomHexColor()}"></div>`
-    )
-    .join("");
-  return (refs.boxInner.innerHTML = newBox);
+  refs.boxInner.append(...items);
+};
+
+const destroyBoxes = () => {
+  return (refs.boxInner.innerHTML = "");
 };
 
 refs.createBtn.addEventListener("click", createBoxes);
+refs.destroyBtn.addEventListener("click", destroyBoxes);
