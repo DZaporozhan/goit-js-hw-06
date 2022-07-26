@@ -35,3 +35,10 @@ const createBoxes = (amount) => {
     .join("");
   return (refs.boxInner.innerHTML = newBox);
 };
+
+const destroyBoxes = () => {
+  return (refs.boxInner.innerHTML = "");
+};
+
+refs.createBtn.addEventListener("click", createBoxes);
+refs.destroyBtn.addEventListener("click", destroyBoxes);
