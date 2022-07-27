@@ -7,12 +7,29 @@ const secondElem = firstElem.nextElementSibling;
 const lastElem = refs.listCateg.lastElementChild;
 
 console.log(`Number of categories: ${refs.listCateg.children.length}`);
-console.log(`Category: ${categNameArr[0].innerText}`);
-console.log(`Elements:${firstElem.lastElementChild.children.length}`);
-console.log(`Category: ${categNameArr[1].innerText}`);
-console.log(`Elements:${secondElem.lastElementChild.children.length}`);
-console.log(`Category: ${categNameArr[2].innerText}`);
-console.log(`Elements:${lastElem.lastElementChild.children.length}`);
+function consolList() {
+  categNameArr.forEach((elem) => {
+    console.log(`Category: ${elem.innerText}`);
+    switch (elem.innerText) {
+      case "Animals":
+        console.log(`Elements:${firstElem.lastElementChild.children.length}`);
+        break;
+
+      case "Products":
+        console.log(`Elements:${secondElem.lastElementChild.children.length}`);
+        break;
+
+      case "Technologies":
+        console.log(`Elements:${lastElem.lastElementChild.children.length}`);
+        break;
+
+      default:
+        console.log("Invalid subscription type");
+    }
+  });
+}
+
+consolList();
 
 // Number of categories: 3
 
