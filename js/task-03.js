@@ -18,7 +18,7 @@ const refs = {
 };
 
 const markup = images
-  .map((img) => `<img src=${img.url}  alt=${img.alt} />`)
+  .map((img) => `<li><img src=${img.url}  alt="${img.alt}"></li>`)
   .join("");
 
-refs.galleryParent.innerHTML = markup;
+refs.galleryParent.insertAdjacentHTML("beforeend", markup);
