@@ -10,24 +10,35 @@ const refs = {
 };
 let inpVal = 0;
 controls.addEventListener("input", (e) => {
+  console.log(e.target.value);
   return (inpVal = e.target.value);
 });
 
-const createBoxes = (amount) => {
-  amount = inpVal;
-  let items = [];
-  const minSize = 30;
-  for (let i = 0; i < amount; i++) {
-    const color = getRandomHexColor();
-    const adgeSize = minSize + 10 * i;
-    const item = document.createElement("div");
-    item.style.backgroundColor = color;
-    item.style.width = `${adgeSize}px`;
-    item.style.height = `${adgeSize}px`;
-    items.push(item);
+function createStyleOptions() {
+  let qrt = inpVal;
+  let styleArr = [];
+  const minWidth = 30;
+  const minHeigth = 30;
+  for (let i = 0; i < qrt; i++) {
+    styleArr.push({
+      width: minWidth + 10 * i,
+      heigth: minHeigth + 10 * i,
+      color: getRandomHexColor(),
+    });
   }
-  refs.boxInner.append(...items);
-};
+  return styleArr;
+}
+
+function createBoxes(amount) {
+  amount = createStyleOptions();
+  const newBox = amount
+    .map(
+      (box) =>
+        `<div style="width:${box.width}px; height:${box.heigth}px; background-color:${box.color}"></div>`
+    )
+    .join("");
+  return (refs.boxInner.innerHTML = newBox);
+}
 
 const destroyBoxes = () => {
   return (refs.boxInner.innerHTML = "");
