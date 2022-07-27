@@ -9,10 +9,12 @@ const onSubmit = (e) => {
     password: { value: passwordValue },
   } = e.target.elements;
   const messageAlert = "Усі поля мають бути заповнені";
-  emailValue === "" || passwordValue === ""
-    ? alert(messageAlert)
-    : console.log({ emailValue, passwordValue });
-  refs.form.reset();
+  if (emailValue === "" || passwordValue === "") {
+    alert(messageAlert);
+  } else {
+    console.log({ emailValue, passwordValue });
+    refs.form.reset();
+  }
 };
 
 refs.form.addEventListener("submit", onSubmit);
