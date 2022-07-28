@@ -1,35 +1,14 @@
 const refs = {
   listCateg: document.querySelector("#categories"),
 };
-const categNameArr = refs.listCateg.querySelectorAll("h2");
-const firstElem = refs.listCateg.firstElementChild;
-const secondElem = firstElem.nextElementSibling;
-const lastElem = refs.listCateg.lastElementChild;
 
-console.log(`Number of categories: ${refs.listCateg.children.length}`);
-function consolList() {
-  categNameArr.forEach((elem) => {
-    console.log(`Category: ${elem.innerText}`);
-    switch (elem.innerText) {
-      case "Animals":
-        console.log(`Elements:${firstElem.lastElementChild.children.length}`);
-        break;
+const arr = [...refs.listCateg.children];
+console.log(`Number of categories:${arr.length}`);
 
-      case "Products":
-        console.log(`Elements:${secondElem.lastElementChild.children.length}`);
-        break;
-
-      case "Technologies":
-        console.log(`Elements:${lastElem.lastElementChild.children.length}`);
-        break;
-
-      default:
-        console.log("Invalid subscription type");
-    }
-  });
-}
-
-consolList();
+arr.map((elem) => {
+  console.log(`Category:${elem.children[0].textContent}`);
+  console.log(`Elements:${elem.children[1].children.length}`);
+});
 
 // Number of categories: 3
 
