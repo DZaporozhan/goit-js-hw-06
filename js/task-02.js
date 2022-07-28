@@ -16,10 +16,12 @@ listTittle.textContent = "Ingredients";
 listTittle.classList.add(".tittle");
 
 refs.listParent.prepend(listTittle);
-
-ingredients.forEach((elem) => {
+const arr = [];
+ingredients.map((elem) => {
   const listElems = document.createElement("li");
   listElems.textContent = `${elem}`;
   listElems.classList.add(".item");
-  refs.listParent.append(listElems);
+  return arr.push(listElems);
 });
+
+refs.listParent.append(...arr);
